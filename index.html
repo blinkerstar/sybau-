@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#050505">
+<meta name="description" content="Rúzzos Net: recursos, versiones, estado de servicios y soporte para gaming.">
+<title>RÚZZOS NET — Gaming Platform</title>
+<style>
+:root{--bg:#050505;--panel:#0b0b0b;--panel2:#111;--line:#292929;--text:#f7f7f7;--muted:#999;--green:#36d477;--red:#ff5555;--radius:16px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;background:radial-gradient(ellipse at 50% -18%,#24242455,transparent 42%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+a{color:inherit;text-decoration:none}button,input,select{font:inherit}.wrap{width:min(1120px,calc(100% - 36px));margin:auto}
+header{position:sticky;top:0;z-index:20;background:#050505ed;backdrop-filter:blur(14px);border-bottom:1px solid #ffffff17}
+.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font-weight:950;letter-spacing:2px;font-size:18px}.brand span{color:#888}
+.navlinks{display:flex;gap:21px;align-items:center;color:#bbb;font-size:13px}.navlinks a:hover,footer a:hover{color:#fff}
+.menu{display:none;background:#111;color:white;border:1px solid #333;border-radius:9px;padding:9px 12px}
+.hero{text-align:center;padding:76px 0 52px}.eyebrow,.tag{display:inline-flex;align-items:center;gap:8px;border:1px solid #383838;background:#0c0c0c;padding:8px 12px;border-radius:99px;color:#ddd;font-size:10px;letter-spacing:1.4px;text-transform:uppercase}
+h1{font-size:clamp(39px,7vw,68px);line-height:1.02;letter-spacing:-2.7px;margin:25px auto 17px}.hero h1 span{color:#999}
+.lead{max-width:680px;margin:auto;color:var(--muted);font-size:15px;line-height:1.8}
+.actions{display:flex;justify-content:center;gap:11px;flex-wrap:wrap;margin-top:26px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 19px;border-radius:9px;border:1px solid #444;background:#090909;color:#fff;font-size:13px;font-weight:800;cursor:pointer;transition:.2s}
+.btn.primary{background:#fff;color:#000;border-color:#fff}.btn:hover{transform:translateY(-2px);border-color:#fff}.btn.primary:hover{background:#ddd}
+.section{padding:36px 0 58px}.section-head{margin-bottom:22px}.kicker{color:#aaa;font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:9px}.section h2{font-size:clamp(26px,4vw,37px);letter-spacing:-1px;margin:0 0 9px}.sub{color:var(--muted);font-size:13px;line-height:1.7;margin:0}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.feature,.card,.service-card,.faq details,.release{border:1px solid var(--line);background:linear-gradient(145deg,#121212,#080808);border-radius:var(--radius)}
+.feature{padding:22px}.line-icon{width:38px;height:38px;border:1px solid #444;border-radius:10px;display:grid;place-items:center;margin-bottom:17px;color:#fff}.line-icon svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.feature h3,.card h3{font-size:15px;margin:0 0 8px}.feature p,.card p{font-size:12px;color:var(--muted);line-height:1.7;margin:0}
+.split{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}.info-panel{padding:23px;border:1px solid #303030;border-radius:var(--radius);background:linear-gradient(145deg,#151515,#080808)}
+.info-row{display:flex;justify-content:space-between;gap:15px;padding:14px 0;border-bottom:1px solid #ffffff12;font-size:12px}.info-row:last-child{border:0}.info-row span:last-child{color:#ddd}
+.service-tools{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}.field{background:#0b0b0b;border:1px solid #333;color:#fff;border-radius:9px;padding:12px 13px;min-height:44px;outline:none}.field:focus{border-color:#aaa}.search{flex:1;min-width:190px}.filter{min-width:145px}
+.service-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.service-card{padding:17px;display:grid;grid-template-columns:48px minmax(0,1fr);gap:13px;align-items:start}
+.service-icon{width:46px;height:46px;display:grid;place-items:center;border:1px solid #454545;border-radius:13px;background:#101010}
+.service-icon svg{width:25px;height:25px;fill:none;stroke:#fff;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.service-top{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}.service-title{font-size:15px;font-weight:850;letter-spacing:.3px}
+.status{display:inline-flex;align-items:center;gap:6px;font-size:10px;letter-spacing:.8px;font-weight:850;color:#bbb}.light{width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 8px #ff555566}.status.online{color:#b9f5d0}.status.online .light{background:var(--green);box-shadow:0 0 8px #36d47788}
+.service-meta{display:flex;gap:8px 16px;flex-wrap:wrap;margin-top:11px;color:#999;font-size:11px}.service-meta b{color:#eee;font-weight:700;margin-right:4px}
+.service-desc{font-size:11px;color:#888;line-height:1.55;margin:10px 0 12px}.service-actions{display:flex;gap:8px;flex-wrap:wrap}.small-btn{font-size:11px;min-height:34px;padding:0 12px;border-radius:7px}.small-btn[aria-disabled="true"]{opacity:.4;pointer-events:none}
+.empty{grid-column:1/-1;text-align:center;padding:28px;border:1px dashed #444;border-radius:12px;color:#999;font-size:13px}
+.plan{padding:23px;position:relative}.plan .price{font-size:28px;font-weight:900;margin:12px 0}.plan ul{padding-left:18px;color:#aaa;font-size:12px;line-height:2}.plan .btn{width:100%;margin-top:8px}
+.plan.featured{border-color:#777;background:linear-gradient(145deg,#1b1b1b,#080808)}
+.badge{font-size:9px;letter-spacing:1px;color:#ddd;border:1px solid #555;border-radius:99px;padding:5px 8px}
+.faq{display:grid;gap:9px}.faq details{padding:15px 17px}.faq summary{cursor:pointer;font-size:13px;font-weight:750}.faq details p{color:#999;font-size:12px;line-height:1.7;margin:12px 0 0}
+.release-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.release{padding:17px}.release small{color:#888;letter-spacing:1px}.release h3{font-size:14px;margin:8px 0}.release p{font-size:12px;color:#999;line-height:1.6;margin:0}
+.cta{text-align:center;padding:34px 22px;border:1px solid #333;border-radius:var(--radius);background:radial-gradient(ellipse at 50% 0%,#ffffff12,transparent 70%),#090909;margin:20px 0 58px}.cta p{color:#999;font-size:13px}
+footer{border-top:1px solid #ffffff18;padding:24px 0 30px;color:#999;font-size:11px}.footer-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}.footer-links{display:flex;gap:16px;flex-wrap:wrap}
+.modal-backdrop{position:fixed;inset:0;background:#000c;display:none;align-items:center;justify-content:center;padding:18px;z-index:50}.modal-backdrop.open{display:flex}.modal{width:min(100%,440px);background:#090909;border:1px solid #444;border-radius:16px;padding:24px}.modal h2{font-size:23px;margin:0 0 9px}.modal p{font-size:12px;color:#999;line-height:1.7}.modal input{width:100%;margin:10px 0}.modal .btn{width:100%}.notice{min-height:20px;color:#ddd!important}
+@media(max-width:760px){.navlinks{display:none;position:absolute;top:76px;left:0;right:0;background:#080808;border-bottom:1px solid #333;padding:18px;flex-direction:column;align-items:flex-start}.navlinks.open{display:flex}.menu{display:block}.hero{padding:55px 0 38px}.grid3,.release-list{grid-template-columns:1fr}.split{grid-template-columns:1fr}.service-grid{grid-template-columns:1fr}.section{padding:28px 0 44px}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+<a class="brand" href="#inicio">RÚZZOS <span>NET</span></a>
+<button class="menu" id="menuBtn" aria-expanded="false" aria-label="Abrir menú">MENÚ</button>
+<nav class="navlinks" id="navlinks"><a href="#inicio">Inicio</a><a href="#versiones">Versiones</a><a href="#premium">Planes</a><a href="#actualizaciones">Actualizaciones</a><a href="#ayuda">Ayuda</a></nav>
+</div></header>
+
+<main class="wrap">
+<section class="hero" id="inicio">
+<div class="eyebrow"><span class="light" style="background:#aaa;box-shadow:none"></span> PLATAFORMA / GAMING</div>
+<h1>RÚZZOS NET<br><span>Todo en un solo lugar.</span></h1>
+<p class="lead">Consulta recursos, compatibilidad, estado de servicios, versiones y novedades de Rúzzos Net desde una plataforma organizada.</p>
+<div class="actions"><button class="btn primary" id="openActivation">Activar mi key</button><a class="btn" id="discordLink" href="#" target="_blank" rel="noopener noreferrer">Discord</a></div>
+</section>
+
+<section class="grid3" aria-label="Características">
+<article class="feature"><div class="line-icon"><svg viewBox="0 0 24 24"><path d="M2 8.8a15 15 0 0 1 20 0M5 12a10.5 10.5 0 0 1 14 0m-11 3.2a5.5 5.5 0 0 1 8 0M12 19h.01"/></svg></div><h3>Recursos organizados</h3><p>Enlaces identificados por nombre, dispositivo, versión y disponibilidad.</p></article>
+<article class="feature"><div class="line-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Información transparente</h3><p>Consulta el estado publicado de cada recurso y sus requisitos antes de abrirlo.</p></article>
+<article class="feature"><div class="line-icon"><svg viewBox="0 0 24 24"><path d="M12 15V3m-5 5 5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div><h3>Acceso sencillo</h3><p>Secciones claras para versiones, membresías, activación y soporte.</p></article>
+</section>
+
+<section class="section split" id="versiones">
+<div><div class="kicker">QUÉ ES RÚZZOS NET</div><h2>Una plataforma clara para tu dispositivo.</h2><p class="sub">Aquí encontrarás la información de las versiones disponibles, los recursos publicados y las instrucciones correspondientes. La compatibilidad y el estado deben revisarse en cada tarjeta.</p></div>
+<div class="info-panel"><div class="kicker">INFORMACIÓN DE PLATAFORMA</div><div class="info-row"><span>Plataformas</span><span>iOS / Android / PC</span></div><div class="info-row"><span>Catálogos privados</span><span>Free / VIP / Ultra</span></div><div class="info-row"><span>Estado de la web</span><span>Interfaz disponible</span></div><div class="info-row"><span>Soporte</span><span>Enlaces configurables</span></div></div>
+</section>
+
+<section class="section" id="premium">
+<div class="section-head"><div class="kicker">MEMBRESÍAS</div><h2>Free y Premium</h2><p class="sub">Consulta qué incluye cada modalidad. Los botones de compra se activarán cuando agregues tus enlaces oficiales de pago.</p></div>
+<div class="grid3">
+<article class="card plan"><span class="badge">ACCESO BÁSICO</span><h3>Free</h3><div class="price">Gratis</div><ul><li>Acceso a recursos gratuitos</li><li>Información de compatibilidad</li><li>Actualizaciones públicas</li><li>Ayuda de la comunidad</li></ul></article>
+<article class="card plan featured"><span class="badge">ACCESO EXCLUSIVO</span><h3>Premium</h3><div class="price">Según plan</div><ul><li>Recursos identificados como Premium</li><li>Información y novedades exclusivas</li><li>Soporte prioritario si está disponible</li><li>Acceso sujeto a validación de membresía</li></ul><button class="btn primary" id="premiumInfo">Consultar Premium</button></article>
+<article class="card plan"><span class="badge">COMPATIBILIDAD</span><h3>Dispositivos</h3><div class="price">iOS / Android</div><ul><li>Versión indicada en cada recurso</li><li>Requisitos antes de acceder</li><li>Estado de disponibilidad visible</li><li>Guías según plataforma</li></ul><a class="btn" href="#ayuda">Ver ayuda</a></article>
+</div>
+</section>
+
+<section class="section" id="actualizaciones">
+<div class="section-head"><div class="kicker">NOVEDADES</div><h2>Actualizaciones</h2><p class="sub">Registro de cambios para que los miembros sepan qué se ha actualizado.</p></div>
+<div class="release-list"><article class="release"><small>VERSIÓN 1.0</small><h3>Nueva estructura web</h3><p>Organización de secciones, catálogo de recursos y diseño adaptable a móvil.</p></article><article class="release"><small>VERSIÓN 1.1</small><h3>Catálogo informativo</h3><p>Tarjetas con estado, dispositivo, versión y búsqueda por filtros.</p></article><article class="release"><small>PRÓXIMAMENTE</small><h3>Más novedades</h3><p>Publica aquí los cambios reales cuando estén disponibles.</p></article></div>
+</section>
+
+
+<section class="section" id="privateCatalog" hidden>
+  <div class="section-head">
+    <div class="kicker" id="catalogTierLabel">ACCESO ACTIVADO</div>
+    <h2 id="catalogTitle">Tu catálogo</h2>
+    <p class="sub" id="catalogDescription">Recursos disponibles para tu nivel de acceso.</p>
+  </div>
+  <div class="info-panel" style="margin-bottom:16px">
+    <div class="info-row"><span>Plan activo</span><span id="activeTier">—</span></div>
+    <div class="info-row"><span>Sesión</span><span>Key verificada en esta página</span></div>
+    <div class="actions" style="justify-content:flex-start;margin-top:15px">
+      <button class="btn" id="changeKeyBtn">Cambiar key</button>
+      <button class="btn" id="logoutBtn">Cerrar acceso</button>
+    </div>
+  </div>
+  <div class="service-grid" id="privateServiceGrid"></div>
+</section>
+
+<section class="section" id="ayuda">
+<div class="section-head"><div class="kicker">CENTRO DE AYUDA</div><h2>Preguntas frecuentes</h2><p class="sub">Respuestas rápidas sobre el uso de la plataforma.</p></div>
+<div class="faq">
+<details><summary>¿Cómo sé si un recurso está disponible?</summary><p>Revisa el indicador de estado de su tarjeta. Verde significa ONLINE y rojo significa OFFLINE. El estado debe actualizarse desde la configuración del catálogo o una fuente de estado real.</p></details>
+<details><summary>¿Cómo sé si es compatible con mi dispositivo?</summary><p>Consulta los campos Dispositivo y Versión de la tarjeta. Si aparece “Por configurar”, todavía falta publicar esa información.</p></details>
+<details><summary>¿Qué hago si un enlace no abre?</summary><p>Comprueba que el recurso esté ONLINE y contacta con soporte si el enlace continúa sin funcionar.</p></details>
+<details><summary>¿Cómo activo mi key?</summary><p>Selecciona “Activar mi key” e introduce tu código. En esta versión de prueba se usan keys de demostración. Para producción debes conectar un servidor seguro de licencias.</p></details>
+<details><summary>¿Dónde consigo soporte?</summary><p>Utiliza el enlace oficial de Discord o el canal de soporte que configure el administrador.</p></details>
+</div>
+</section>
+
+<section class="cta"><h2>¿Necesitas ayuda?</h2><p>Consulta las preguntas frecuentes o comunícate con el equipo de Rúzzos Net.</p><div class="actions"><a class="btn primary" id="supportLink" href="#" target="_blank" rel="noopener noreferrer">Contactar soporte</a><a class="btn" href="#inicio">Volver arriba</a></div></section>
+</main>
+
+<footer><div class="wrap footer-inner"><div><strong style="color:#fff;letter-spacing:1px">RÚZZOS NET</strong><br><br>Plataforma informativa de recursos y compatibilidad.</div><div class="footer-links"><a href="#versiones">Versiones</a><a href="#premium">Planes</a><a href="#ayuda">Ayuda</a></div><div>© <span id="year"></span> Rúzzos Net</div></div></footer>
+
+<div class="modal-backdrop" id="activationModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal"><div class="kicker">RÚZZOS NET / ACCESO</div><h2 id="modalTitle">Activar mi key</h2><p>Introduce tu key para solicitar la validación de acceso.</p><form id="keyForm"><input class="field" id="keyInput" type="text" placeholder="Introduce tu key" autocomplete="off" required><button class="btn primary" type="submit">Verificar key</button></form><p class="notice" id="keyMessage" role="status" aria-live="polite"></p><button class="btn" id="closeModal">Cerrar</button></div></div>
+
+<script>
+/* DEMO: las keys de prueba están en este archivo.
+   No uses estas keys en producción: el navegador puede verlas.
+   Para producción conecta licenseApiUrl a un backend seguro.
+*/
+const SITE_CONFIG = {
+  discordUrl: "https://discord.gg/PEGA_TU_INVITACION",
+  supportUrl: "https://discord.gg/PEGA_TU_INVITACION",
+  licenseApiUrl: "",
+  premiumUrl: ""
+};
+
+// Cinco keys de prueba: 2 Free, 2 VIP y 1 Ultra.
+const DEMO_KEYS = {
+  "FREE-TEST-001": "Free",
+  "FREE-TEST-002": "Free",
+  "VIP-TEST-001": "VIP",
+  "VIP-TEST-002": "VIP",
+  "ULTRA-TEST-001": "Ultra"
+};
+
+// Modifica los recursos de cada nivel en esta sección.
+const catalogs = {
+  Free: [
+    {name:"AIM DRAG",url:"",status:"offline",device:"Por configurar",version:"Por configurar",description:"Recurso de demostración Free."},
+    {name:"RECURSO FREE 02",url:"",status:"offline",device:"Por configurar",version:"Por configurar",description:"Añade aquí la descripción del recurso."},
+    {name:"RECURSO FREE 03",url:"",status:"offline",device:"Por configurar",version:"Por configurar",description:"Añade aquí la descripción del recurso."}
+  ],
+  VIP: [
+    {name:"RECURSO VIP 01",url:"",status:"offline",device:"Por configurar",version:"Por configurar",description:"Recurso exclusivo del catálogo VIP."},
+    {name:"RECURSO VIP 02",url:"",status:"offline",device:"Por configurar",version:"Por configurar",description:"Añade aquí la descripción del recurso."},
+    {name:"RECURSO VIP 03",url:"",status:"offline",device:"Por configurar",version:"Por configurar",description:"Añade aquí la descripción del recurso."}
+  ],
+  Ultra: [
+    {name:"RECURSO ULTRA 01",url:"",status:"offline",device:"Por configurar",version:"Por configurar",description:"Recurso exclusivo del catálogo Ultra."},
+    {name:"RECURSO ULTRA 02",url:"",status:"offline",device:"Por configurar",version:"Por configurar",description:"Añade aquí la descripción del recurso."},
+    {name:"RECURSO ULTRA 03",url:"",status:"offline",device:"Por configurar",version:"Por configurar",description:"Añade aquí la descripción del recurso."}
+  ]
+};
+
+const iconSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/><path d="M12 2v5M12 17v5M2 12h5M17 12h5"/><circle cx="12" cy="12" r="2"/></svg>`;
+const modal = document.getElementById("activationModal");
+const privateCatalog = document.getElementById("privateCatalog");
+
+function openKeyModal() {
+  modal.classList.add("open");
+  document.getElementById("keyMessage").textContent = "";
+  document.getElementById("keyInput").value = "";
+  document.getElementById("keyInput").focus();
+}
+function closeKeyModal() { modal.classList.remove("open"); }
+
+function renderPrivateCatalog(tier) {
+  const grid = document.getElementById("privateServiceGrid");
+  const items = catalogs[tier] || [];
+  document.getElementById("catalogTierLabel").textContent = "CATÁLOGO " + tier.toUpperCase();
+  document.getElementById("catalogTitle").textContent = "Recursos " + tier;
+  document.getElementById("catalogDescription").textContent =
+    "Este catálogo aparece después de verificar una key " + tier + ".";
+  document.getElementById("activeTier").textContent = tier;
+  grid.innerHTML = "";
+
+  if (!items.length) {
+    grid.innerHTML = '<div class="empty">Todavía no hay recursos configurados para este plan.</div>';
+  }
+
+  items.forEach(r => {
+    const online = r.status === "online";
+    const article = document.createElement("article");
+    article.className = "service-card";
+    const icon = document.createElement("div");
+    icon.className = "service-icon";
+    icon.innerHTML = iconSvg;
+    const body = document.createElement("div");
+    const top = document.createElement("div");
+    top.className = "service-top";
+    const name = document.createElement("div");
+    name.className = "service-title";
+    name.textContent = r.name;
+    const state = document.createElement("span");
+    state.className = "status" + (online ? " online" : "");
+    state.innerHTML = `<i class="light"></i>${online ? "ONLINE" : "OFFLINE"}`;
+    top.append(name, state);
+
+    const meta = document.createElement("div");
+    meta.className = "service-meta";
+    const device = document.createElement("span");
+    device.innerHTML = "<b>Dispositivo:</b> ";
+    device.append(document.createTextNode(r.device));
+    const version = document.createElement("span");
+    version.innerHTML = "<b>Versión:</b> ";
+    version.append(document.createTextNode(r.version));
+    meta.append(device, version);
+
+    const desc = document.createElement("p");
+    desc.className = "service-desc";
+    desc.textContent = r.description;
+    const actions = document.createElement("div");
+    actions.className = "service-actions";
+    const link = document.createElement("a");
+    link.className = "btn small-btn";
+    link.textContent = "Abrir recurso";
+    if (r.url && /^https:\/\/\S+/i.test(r.url)) {
+      link.href = r.url;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+    } else {
+      link.href = "#";
+      link.setAttribute("aria-disabled", "true");
+      link.title = "Añade un enlace HTTPS en catalogs.";
+    }
+    const access = document.createElement("span");
+    access.className = "tag";
+    access.textContent = tier;
+    actions.append(link, access);
+    body.append(top, meta, desc, actions);
+    article.append(icon, body);
+    grid.append(article);
+  });
+
+  privateCatalog.hidden = false;
+  privateCatalog.scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+document.getElementById("openActivation").addEventListener("click", openKeyModal);
+document.getElementById("freeAccessBtn")?.addEventListener("click", openKeyModal);
+document.getElementById("closeModal").addEventListener("click", closeKeyModal);
+modal.addEventListener("click", e => { if (e.target === modal) closeKeyModal(); });
+
+document.getElementById("keyForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const key = document.getElementById("keyInput").value.trim().toUpperCase();
+  const msg = document.getElementById("keyMessage");
+  msg.textContent = "Verificando...";
+  try {
+    let result;
+    if (SITE_CONFIG.licenseApiUrl) {
+      const response = await fetch(SITE_CONFIG.licenseApiUrl, {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({key})
+      });
+      if (!response.ok) throw new Error("No se pudo verificar la key.");
+      result = await response.json();
+    } else {
+      const tier = DEMO_KEYS[key];
+      result = tier
+        ? {valid:true, tier, message:"Key de prueba válida."}
+        : {valid:false, message:"Key no válida. Revisa el código e inténtalo otra vez."};
+    }
+
+    if (result.valid && ["Free","VIP","Ultra"].includes(result.tier)) {
+      msg.textContent = result.message || "Key válida.";
+      closeKeyModal();
+      renderPrivateCatalog(result.tier);
+    } else {
+      msg.textContent = result.message || "Key no válida o plan no reconocido.";
+    }
+  } catch (err) {
+    msg.textContent = "No se pudo conectar con el servidor. Inténtalo más tarde.";
+  }
+});
+
+document.getElementById("changeKeyBtn").addEventListener("click", () => {
+  privateCatalog.hidden = true;
+  openKeyModal();
+});
+document.getElementById("logoutBtn").addEventListener("click", () => {
+  privateCatalog.hidden = true;
+  window.scrollTo({top:0, behavior:"smooth"});
+});
+
+document.getElementById("discordLink").href=SITE_CONFIG.discordUrl;
+document.getElementById("supportLink").href=SITE_CONFIG.supportUrl;
+document.getElementById("premiumInfo").addEventListener("click",()=>{if(SITE_CONFIG.premiumUrl)window.open(SITE_CONFIG.premiumUrl,"_blank","noopener");else alert("Configura el enlace oficial de información o compra Premium en SITE_CONFIG.premiumUrl.");});
+const menuBtn=document.getElementById("menuBtn"),nav=document.getElementById("navlinks");
+menuBtn.addEventListener("click",()=>{const open=nav.classList.toggle("open");menuBtn.setAttribute("aria-expanded",String(open));});
+nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{nav.classList.remove("open");menuBtn.setAttribute("aria-expanded","false")}));
+document.getElementById("year").textContent=new Date().getFullYear();
+</script>
+</body></html>
